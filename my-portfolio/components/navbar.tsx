@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import { LineMaterial } from 'three/examples/jsm/Addons.js';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -54,6 +55,7 @@ const NavBar = () => {
           <li><Link href="#experience" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Work Experience</Link></li>
           <li><Link href="#projects" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Projects</Link></li>
           <li><Link href="#research" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Research</Link></li>
+          <li><Link href="#case-studies" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition"> Case Studies</Link></li>
           <li><Link href="#education" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Education</Link></li>
           <li><Link href="#resume" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Resume</Link></li>
           <li><Link href="#contact" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Contact</Link></li>

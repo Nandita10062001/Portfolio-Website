@@ -7,6 +7,7 @@ import Skills from '../components/skills';
 import Projects from '../components/projects';
 import WorkExperience from '../components/work';
 import Research from '../components/research';
+import CaseStudies from '../components/case-studies';
 import Education from '../components/education';
 import Resume from '../components/resume';
 import Contact from '../components/contact';
@@ -46,6 +47,12 @@ export default function Home() {
       <section id="research" className="py-16 px-8 bg-gray-100 dark:bg-gray-900">
         <h2 className="text-3xl font-bold mb-6">Research</h2>
         <Research />
+      </section>
+
+      {/* Case Studies */}
+      <section id="case-studies" className="py-16 px-8 bg-gray-100 dark:bg-gray-900">
+        <h2 className="text-3xl font-bold mb-6">Case Studies</h2>
+        <CaseStudies/>
       </section>
 
       {/* Education Section */}
