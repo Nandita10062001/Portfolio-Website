@@ -1,67 +1,69 @@
 import Link from 'next/link';
-import { useState } from 'react';
-import { LineMaterial } from 'three/examples/jsm/Addons.js';
+import { useState, useEffect } from 'react';
+import { Grid, User, Code, Monitor, Edit, Mail } from 'lucide-react';
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-gray-900 dark:bg-gray-800 z-50 shadow-md">
-      <div className="container mx-auto flex items-center justify-between p-4">
-        <div className="text-2xl font-bold text-white">
-          <Link href="#landing">Your Logo</Link>
+    <header className="fixed top-0 left-0 w-full z-50 shadow-md" style={{backgroundColor:'#292F36'}}>
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center">
+          <Link href="#landing" className="text-2xl font-bold py-4">
+            <span className="text-teal-400">&lt;</span>
+            <span className="text-white">Nandita Nandakumar</span>
+            <span className="text-teal-400">/&gt;</span>
+          </Link>
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
+            </svg>
+          </button>
+          <nav className={`md:flex ${menuOpen ? 'block' : 'hidden'} absolute md:static top-full left-0 w-full md:w-auto bg-[#292F36] md:bg-transparent`}>
+            <ul className="flex flex-col md:flex-row md:items-center">
+              {['Home', 'Skills', 'Experience', 'Projects', 'Research', 'Case Studies', 'Education', 'Resume', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link 
+                    href={`#${item.toLowerCase().replace(' ', '-')}`}
+                    className="block py-2 px-4 text-white hover:text-teal-400 transition-all duration-300 relative group"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item}
+                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
-        <button
-          className="md:hidden text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          )}
-        </button>
-        <ul
-          className={`md:flex md:space-x-6 space-y-4 md:space-y-0 absolute md:static top-full left-0 w-full md:w-auto bg-gray-900 dark:bg-gray-800 md:bg-transparent transition-transform transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:relative md:flex-row`}
-        >
-          <li><Link href="#landing" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Home</Link></li>
-          <li><Link href="#skills" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Skills</Link></li>
-          <li><Link href="#experience" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Work Experience</Link></li>
-          <li><Link href="#projects" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Projects</Link></li>
-          <li><Link href="#research" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Research</Link></li>
-          <li><Link href="#case-studies" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition"> Case Studies</Link></li>
-          <li><Link href="#education" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Education</Link></li>
-          <li><Link href="#resume" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Resume</Link></li>
-          <li><Link href="#contact" className="block py-2 px-4 text-white hover:bg-gray-700 dark:hover:bg-gray-600 transition">Contact</Link></li>
-        </ul>
       </div>
-    </nav>
+    </header>
+  
   );
 };
 
