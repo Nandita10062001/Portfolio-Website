@@ -11,7 +11,6 @@ import CaseStudies from '../components/case-studies';
 import Education from '../components/education';
 import Resume from '../components/resume';
 import Contact from '../components/contact';
-import SideBar from '@/components/sidebar';
 
 export default function Home() {
   useEffect(() => {
@@ -22,8 +21,6 @@ export default function Home() {
     <div>
       {/* Navbar */}
       <NavBar />
-
-      <SideBar/>
 
       {/* Landing Section */}
       <Landing />
